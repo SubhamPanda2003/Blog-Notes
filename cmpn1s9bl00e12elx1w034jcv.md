@@ -3,6 +3,7 @@ title: "Adaptive ETA for Google Maps: Hierarchical Tile Indexing for Faster Traf
 datePublished: 2026-05-26T19:48:08.625Z
 cuid: cmpn1s9bl00e12elx1w034jcv
 slug: adaptive-eta-for-google-maps-hierarchical-tile-indexing-for-faster-traffic-updates
+cover: https://cdn.hashnode.com/uploads/covers/6a06127cbaf09db7a628dd57/72945d50-7a9f-4862-a444-baa068ae5dc1.jpg
 
 ---
 
