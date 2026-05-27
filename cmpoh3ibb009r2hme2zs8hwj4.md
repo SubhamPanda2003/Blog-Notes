@@ -15,7 +15,6 @@ Spec-driven development (SDD) is currently one of the most talked-about approach
 
 Though the SDD framework has a lot of advantages, especially adding the skills but still these frameworks are yet nowhere near perfection. It works like magic when a skill is added and used on certain task. So even if you don't have any idea of a particular process or tech stack, create a skill and use it.
 
-  
 Sync spec ---> code : Firstly if we are saving the specs along with our code then its a tough thing to maintain sync between the code and specs. Its better that we don't save those specs and instead treat it as a development assistant.
 
 So many md files : Most of the SDD frameworks produce tens of md files, that would generate may be a lot of code. Its tiresome to review the code as well the specs. And personally I would prefer to review the code files than the md files.
@@ -23,8 +22,8 @@ So many md files : Most of the SDD frameworks produce tens of md files, that wou
 Token Cost: With the recent increase in model pricing producing multiple md files can be a costly affair. Generating so many token might not be worth it.
 
 Less focus on tests or overengineered tests: They generate the "How to implement" thing but then there is no focus on tests. Now as those huge number of lines of code are next to impossible to be reviewed properly by a human, Its very important that we have a way of testing our changes.  
-There is another instance when it created a lot of test for a simple feature and half of them failed. This a point that LLM does stupid things, mostly overengineered solutions.  
-  
+There is another instance when it created a lot of test for a simple feature and half of them failed. This a point that LLM does stupid things, mostly overengineered solutions.
+
 Time, I thought it decreases but is it the case? : Whenever I start to implement a feature, the rigid workflow makes it a bit more time consuming. If you are discipline enough, then its fine else there is always a tendency to write a adhoc prompt outside the workflow. Something I observed is people start their development with a SDD framework but later move to the same old vibe coding practice.
 
 Brownfield projects: SDD tools lack migration strategies for existing, complex codebases. Research could explore ways to “bootstrap” specs from legacy code or link specs to existing requirements repositories.
@@ -41,4 +40,5 @@ SDD is still in its nascent stage, still evolving. For certain use cases, it wor
 
 Use spec-driven AI to amplify craft, not to outsource judgment.
 
-References:1) Martin Fowler on SDD: https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html
+References:  
+1) Martin Fowler on SDD: https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html
