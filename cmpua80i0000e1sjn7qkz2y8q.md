@@ -3,7 +3,7 @@ title: "Why RAG Fails on Codebases — And How ReAct Agents Fix It"
 datePublished: 2026-05-31T21:18:43.850Z
 cuid: cmpua80i0000e1sjn7qkz2y8q
 slug: why-rag-fails-on-codebases-and-how-react-agents-fix-it
-cover: https://cdn.hashnode.com/uploads/covers/6a06127cbaf09db7a628dd57/d6a7511e-222f-4ab6-8060-c82316dec92b.png
+cover: https://cdn.hashnode.com/uploads/covers/6a06127cbaf09db7a628dd57/7ea4b06b-f700-40b6-bd17-98f367249a04.png
 
 ---
 
