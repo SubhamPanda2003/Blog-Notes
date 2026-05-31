@@ -57,7 +57,8 @@ Without making much changes to the existing architecture, we got the full lineag
 
 RAG systems work well for documents because information is mostly linear. Codebases are different — understanding a single function often requires traversing dependencies, imports, and multi-hop call chains spread across the repository.
 
-By adding an iterative ReAct-style retrieval layer on top of traditional RAG, we can move from isolated semantic search to dependency-aware code understanding, enabling far more accurate and context-complete responses.
+By adding an iterative ReAct-style retrieval layer on top of traditional RAG, we can move from isolated semantic search to dependency-aware code understanding, enabling far more accurate and context-complete responses.  
+And why ReAct succeeds? Because it turns retrieval into exploration.
 
 But then what are the tradeoffs between a ReAct agent and the existing language parsing algorithm vs storing the knowledge graph of the codebases. Which of them will be the best options in what scenario. These are some of the questions we will discuss in the upcoming posts in details.
 
