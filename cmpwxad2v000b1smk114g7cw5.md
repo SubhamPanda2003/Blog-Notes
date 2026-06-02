@@ -1,8 +1,11 @@
 ---
 title: "Adaptive-Intent-Driven Development: Why I Stopped Writing Specs"
+seoTitle: "Adaptive-Intent-Driven Development: Why I Stopped  Specs"
+seoDescription: "Adaptive-Intent-Driven Development: Why I Stopped Writing Specs"
 datePublished: 2026-06-02T17:39:56.986Z
 cuid: cmpwxad2v000b1smk114g7cw5
 slug: adaptive-intent-driven-development-why-i-stopped-writing-specs
+tags: ai, ai-development-services, spec-driven-development, intent-driven-development
 
 ---
 
