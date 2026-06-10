@@ -10,11 +10,11 @@ tags: artificial-intelligence, research, skills, research-report
 
 ---
 
-** ALL THE BELOW RESEARCH IS DONE USING AN AGENT Z.AI AND ITS MODELS **
+* ALL THE BELOW RESEARCH IS DONE USING AN AGENT Z.AI AND ITS MODELS *
 
 *An empirical study comparing two skill design paradigms across 5 tasks and 4 LLMs — with real API calls, real results, and surprising findings about hallucination, accuracy, and when to choose which approach.*
 
----
+* * *
 
 ## The Problem Every AI Engineer Faces
 
@@ -26,7 +26,7 @@ We ran a rigorous benchmark to settle this debate with data. Forty real LLM API 
 
 Here is what we found.
 
----
+* * *
 
 ## What Are We Comparing?
 
@@ -35,7 +35,8 @@ Here is what we found.
 A single, large markdown file that contains all the instructions, rules, guidelines, output format specifications, and domain knowledge the LLM needs. Think of it as a comprehensive reference manual — everything is in one place, cross-referenced within a single document, and presented as a unified whole.
 
 **Example structure:**
-```
+
+```plaintext
 code-review-skill.md
 ├── Purpose & Scope
 ├── Process Overview
@@ -51,7 +52,8 @@ code-review-skill.md
 The same content, but split into multiple smaller, focused markdown files. Each file covers a specific aspect of the skill, and they are loaded sequentially based on the task context. Think of it as a curated curriculum — each piece builds on the last, and the model receives only what it needs at each stage.
 
 **Example structure:**
-```
+
+```plaintext
 code-review-skill/
 ├── 01-overview.md          ← Purpose, process, core principles
 ├── 02-security-rules.md    ← Security-specific domain rules
@@ -61,7 +63,7 @@ code-review-skill/
 
 **The critical detail:** Both approaches contain *identical content*. The only variable is structural organization. This ensures that any performance difference we observe is due to the *way* the information is structured, not the *quality* of the information itself.
 
----
+* * *
 
 ## Study Design
 
@@ -70,7 +72,7 @@ code-review-skill/
 We designed five software engineering tasks, each requiring distinct domain expertise and producing different output types:
 
 | # | Task | Domain | What the LLM Must Do |
-|---|------|--------|---------------------|
+| --- | --- | --- | --- |
 | 1 | **Code Review** | Security | Review a Node.js authentication module for bugs, vulnerabilities, and best practice violations |
 | 2 | **API Design** | Architecture | Design a complete RESTful API for an e-commerce order system |
 | 3 | **Debugging** | Concurrency | Identify and fix a race condition in a concurrent order processor |
@@ -84,7 +86,7 @@ These tasks were chosen to span a range of cognitive demands — from analytical
 We tested across four LLMs from the GLM family, spanning different capability tiers:
 
 | Model | Type | What It Represents |
-|-------|------|--------------------|
+| --- | --- | --- |
 | **glm-4-plus** | Flagship | The most capable model — deep reasoning, verbose output |
 | **glm-4-flash** | Speed-optimized | Fast responses, competitive quality |
 | **glm-4-air** | Balanced | Cost-efficient with solid performance |
@@ -94,43 +96,50 @@ We tested across four LLMs from the GLM family, spanning different capability ti
 
 Six metrics were measured for every single API call:
 
-1. **Weighted Score (0-100)**: Accuracy against ground truth, weighted by severity. Critical issues count for 40%, High for 30%, Medium for 20%, Low for 7%, Info for 3%. This means missing a critical security bug hurts your score 13x more than missing an informational note.
-
-2. **Completeness (%)**: The percentage of ground truth items the LLM mentioned in its response. A pure recall metric — did it find the issues, design the endpoints, write the tests?
-
-3. **Hallucination Score (0-100, lower is better)**: Detection of fabricated claims, false factual assertions, and over-engineering suggestions. This is the metric everyone worries about with LLMs — does the model invent problems that do not exist?
-
-4. **Structure Score (0-100)**: How well does the output adhere to the expected format? Does it use JSON when asked? Include severity levels? Provide code examples? Make actionable suggestions?
-
-5. **Latency (ms)**: End-to-end response time from API call to complete response.
-
-6. **Token Usage**: Total tokens consumed (prompt + completion). Directly maps to cost.
+1.  **Weighted Score (0-100)**: Accuracy against ground truth, weighted by severity. Critical issues count for 40%, High for 30%, Medium for 20%, Low for 7%, Info for 3%. This means missing a critical security bug hurts your score 13x more than missing an informational note.
+    
+2.  **Completeness (%)**: The percentage of ground truth items the LLM mentioned in its response. A pure recall metric — did it find the issues, design the endpoints, write the tests?
+    
+3.  **Hallucination Score (0-100, lower is better)**: Detection of fabricated claims, false factual assertions, and over-engineering suggestions. This is the metric everyone worries about with LLMs — does the model invent problems that do not exist?
+    
+4.  **Structure Score (0-100)**: How well does the output adhere to the expected format? Does it use JSON when asked? Include severity levels? Provide code examples? Make actionable suggestions?
+    
+5.  **Latency (ms)**: End-to-end response time from API call to complete response.
+    
+6.  **Token Usage**: Total tokens consumed (prompt + completion). Directly maps to cost.
+    
 
 ### Ground Truth
 
 For each task, we established a ground truth — a definitive list of expected findings, features, or test cases, categorized by severity. This ground truth was created *independently* of the skill content and represents what a domain expert would expect from a high-quality response.
 
 For example, the Code Review task had 12 ground truth items:
-- 3 Critical (hardcoded secret, MD5 hashing, no rate limiting)
-- 4 High (loose equality, no input validation, no password strength, in-memory store)
-- 2 Medium (30-day token expiry, no refresh mechanism)
-- 2 Low (no auth logging, no user roles)
-- 1 Info (consider httpOnly cookies)
 
----
+*   3 Critical (hardcoded secret, MD5 hashing, no rate limiting)
+    
+*   4 High (loose equality, no input validation, no password strength, in-memory store)
+    
+*   2 Medium (30-day token expiry, no refresh mechanism)
+    
+*   2 Low (no auth logging, no user roles)
+    
+*   1 Info (consider httpOnly cookies)
+    
+
+* * *
 
 ## The Results
 
 ### Overall: A Surprisingly Close Race
 
 | Metric | Progressive | Monolithic | Difference |
-|--------|:-----------:|:----------:|:----------:|
+| --- | --- | --- | --- |
 | Weighted Score | 65.17 | **67.55** | +2.38 |
 | Completeness | 59.09% | **60.14%** | +1.05% |
 | Hallucination | **0.00** | **0.00** | 0.00 |
 | Structure Score | 71.05 | **73.95** | +2.90 |
-| Avg Latency | 36,031ms | **34,607ms** | -1,424ms |
-| Avg Tokens | 3,224 | **3,094** | -130 |
+| Avg Latency | 36,031ms | **34,607ms** | \-1,424ms |
+| Avg Tokens | 3,224 | **3,094** | \-130 |
 
 The monolithic approach wins across nearly every metric — but the margins are razor-thin. We are talking about a 2.38-point difference on a 100-point scale. In most practical scenarios, this difference would be imperceptible to end users.
 
@@ -149,9 +158,9 @@ The overall numbers tell one story, but the model-level breakdown tells a more n
 #### glm-4-plus (Flagship)
 
 | Metric | Progressive | Monolithic | Delta |
-|--------|:-----------:|:----------:|:-----:|
-| Weighted Score | **60.44** | 60.07 | -0.37 |
-| Completeness | **55.00%** | 53.09% | -1.91% |
+| --- | --- | --- | --- |
+| Weighted Score | **60.44** | 60.07 | \-0.37 |
+| Completeness | **55.00%** | 53.09% | \-1.91% |
 | Structure | 63.80 | **71.00** | +7.20 |
 
 The flagship model is the *only one where progressive disclosure outperforms monolithic on accuracy*. It found more ground truth items with progressive skills, but its structure was worse. This suggests that the most capable model benefits from the focused, incremental presentation of progressive files — it can hold more nuanced context when information is layered — but the file boundaries sometimes disrupt its formatting discipline.
@@ -159,7 +168,7 @@ The flagship model is the *only one where progressive disclosure outperforms mon
 #### glm-4-flash (Speed-optimized)
 
 | Metric | Progressive | Monolithic | Delta |
-|--------|:-----------:|:----------:|:-----:|
+| --- | --- | --- | --- |
 | Weighted Score | 64.37 | **70.27** | +5.90 |
 | Completeness | 58.41% | **63.09%** | +4.68% |
 
@@ -168,7 +177,7 @@ The speed-optimized model shows the *largest gap* in favor of monolithic. This m
 #### glm-4-air (Balanced)
 
 | Metric | Progressive | Monolithic | Delta |
-|--------|:-----------:|:----------:|:-----:|
+| --- | --- | --- | --- |
 | Weighted Score | 67.87 | **72.10** | +4.23 |
 | Completeness | 61.51% | **62.94%** | +1.43% |
 
@@ -177,8 +186,8 @@ The balanced model follows the same pattern as flash — monolithic leads, but t
 #### glm-3-turbo (Legacy)
 
 | Metric | Progressive | Monolithic | Delta |
-|--------|:-----------:|:----------:|:-----:|
-| Weighted Score | **68.00** | 67.77 | -0.23 |
+| --- | --- | --- | --- |
+| Weighted Score | **68.00** | 67.77 | \-0.23 |
 | Completeness | **61.43%** | 61.43% | 0.00% |
 
 The legacy model shows *no meaningful difference* between the two approaches. Both achieve essentially the same scores. This is interesting because it suggests that older, less sophisticated models are not significantly affected by skill structure — they perform at a consistent level regardless of how the instructions are organized.
@@ -188,7 +197,7 @@ The legacy model shows *no meaningful difference* between the two approaches. Bo
 The overall numbers slightly favor monolithic, but specific tasks tell a different story:
 
 | Task | Progressive | Monolithic | Winner |
-|------|:-----------:|:----------:|--------|
+| --- | --- | --- | --- |
 | Code Review | **47.38** | 40.25 | Progressive (+7.13) |
 | API Design | 79.29 | **86.04** | Monolithic (+6.75) |
 | Debugging | 58.17 | **64.83** | Monolithic (+6.66) |
@@ -201,7 +210,7 @@ Monolithic wins on three tasks: **API Design**, **Debugging**, and **Testing**. 
 
 This analytical-vs-generative distinction is a genuine insight. If your task is about *evaluating* existing content, progressive disclosure gives the model focused lenses through which to examine it. If your task is about *creating* new content, the monolithic format provides a unified creative brief.
 
----
+* * *
 
 ## Why These Differences Exist
 
@@ -219,7 +228,7 @@ Why does progressive disclosure win on code review? We believe it is because the
 
 Monolithic files use slightly fewer tokens on average (3,094 vs 3,224) because they avoid redundant headers and transition markers between files. While this 4% difference seems small, it compounds across thousands of API calls in production. More importantly, fewer prompt tokens means more context window is available for the actual task content — the code being reviewed, the API specification being generated, the test cases being written.
 
----
+* * *
 
 ## The Practical Decision Framework
 
@@ -227,27 +236,40 @@ Based on our data, here is a decision framework for choosing between progressive
 
 ### Choose Monolithic When:
 
-- **Your primary task is generative** — creating new content, designing systems, writing code, generating test suites. The monolithic format's unified context helps the model maintain a coherent creative vision.
-- **You are using a mid-tier or speed-optimized model** (glm-4-flash, glm-4-air). These models benefit more from having all instructions in a single cohesive prompt.
-- **Maximum output quality is critical** and the skill is relatively stable. The 2-3 point accuracy advantage, while small, is real.
-- **A single team owns the skill content** and updates are infrequent. The monolithic format's single-file management is simpler when changes are coordinated.
+*   **Your primary task is generative** — creating new content, designing systems, writing code, generating test suites. The monolithic format's unified context helps the model maintain a coherent creative vision.
+    
+*   **You are using a mid-tier or speed-optimized model** (glm-4-flash, glm-4-air). These models benefit more from having all instructions in a single cohesive prompt.
+    
+*   **Maximum output quality is critical** and the skill is relatively stable. The 2-3 point accuracy advantage, while small, is real.
+    
+*   **A single team owns the skill content** and updates are infrequent. The monolithic format's single-file management is simpler when changes are coordinated.
+    
 
 ### Choose Progressive Disclosure When:
 
-- **Your primary task is analytical** — reviewing code, auditing security, evaluating documentation. The staged presentation acts as a cognitive checklist that improves recall.
-- **You are using a flagship/reasoning model** (glm-4-plus). The most capable models can leverage the focused, layered presentation to produce more thorough analysis.
-- **Multiple teams contribute to skill content** and need independent versioning. Progressive files enable parallel development and review.
-- **Selective loading matters for cost optimization**. In production, not all sub-skills may be needed for every invocation. Progressive disclosure allows loading only the relevant files, reducing prompt size and cost.
-- **Skill content changes frequently**. When a specific rule changes, only the relevant progressive file needs modification rather than editing a large monolithic document.
-- **Reusability across skills is important**. Individual progressive files (e.g., a security rules file) can be shared across multiple different skill compositions.
+*   **Your primary task is analytical** — reviewing code, auditing security, evaluating documentation. The staged presentation acts as a cognitive checklist that improves recall.
+    
+*   **You are using a flagship/reasoning model** (glm-4-plus). The most capable models can leverage the focused, layered presentation to produce more thorough analysis.
+    
+*   **Multiple teams contribute to skill content** and need independent versioning. Progressive files enable parallel development and review.
+    
+*   **Selective loading matters for cost optimization**. In production, not all sub-skills may be needed for every invocation. Progressive disclosure allows loading only the relevant files, reducing prompt size and cost.
+    
+*   **Skill content changes frequently**. When a specific rule changes, only the relevant progressive file needs modification rather than editing a large monolithic document.
+    
+*   **Reusability across skills is important**. Individual progressive files (e.g., a security rules file) can be shared across multiple different skill compositions.
+    
 
 ### Either Works When:
 
-- **Hallucination prevention is your primary concern.** Both approaches scored identically at zero hallucination. The key is the specificity and quality of your content, not its structure.
-- **You are using a legacy model.** Older models show negligible difference between the two approaches.
-- **Your tasks are mixed.** For general-purpose AI agents that handle both analytical and generative tasks, the difference is too small to be a deciding factor.
+*   **Hallucination prevention is your primary concern.** Both approaches scored identically at zero hallucination. The key is the specificity and quality of your content, not its structure.
+    
+*   **You are using a legacy model.** Older models show negligible difference between the two approaches.
+    
+*   **Your tasks are mixed.** For general-purpose AI agents that handle both analytical and generative tasks, the difference is too small to be a deciding factor.
+    
 
----
+* * *
 
 ## What We Learned About Hallucination
 
@@ -261,25 +283,26 @@ Why? Because both approaches provided the model with the *same complete informat
 
 The implication for practitioners is empowering: **you do not need to fear hallucination from skill structure.** Focus your energy on writing clear, specific, domain-relevant skill content instead of agonizing over whether to use one file or five.
 
----
+* * *
 
 ## Limitations and Future Work
 
 No study is complete without acknowledging its boundaries:
 
-1. **Single model family.** All four models are from the GLM family. Results may differ for GPT-4, Claude, Gemini, or Llama. The attention distribution patterns that drive our findings may vary across architectures.
-
-2. **Concatenated progressive files.** In our benchmark, progressive files were concatenated and sent as a single prompt. A true progressive disclosure system — where files are loaded dynamically based on conversation context — might yield different results. The sequential, context-aware loading pattern could amplify the cognitive checklist effect we observed.
-
-3. **Ground truth methodology.** Our evaluation uses keyword-matching against a predefined ground truth. This is objective but may miss valid responses that use different terminology or approaches than the ground truth expects. A human evaluation study would add nuance.
-
-4. **Skill content parity.** Both approaches contained identical content. In practice, progressive disclosure often leads to *different* content — authors tend to write more detailed, focused content when they know each file has a single purpose. This content quality improvement could shift results in favor of progressive disclosure.
-
-5. **Task scope.** Our five tasks are all software engineering. Different domains (legal analysis, medical diagnosis, creative writing) may show different patterns.
+1.  **Single model family.** All four models are from the GLM family. Results may differ for GPT-4, Claude, Gemini, or Llama. The attention distribution patterns that drive our findings may vary across architectures.
+    
+2.  **Concatenated progressive files.** In our benchmark, progressive files were concatenated and sent as a single prompt. A true progressive disclosure system — where files are loaded dynamically based on conversation context — might yield different results. The sequential, context-aware loading pattern could amplify the cognitive checklist effect we observed.
+    
+3.  **Ground truth methodology.** Our evaluation uses keyword-matching against a predefined ground truth. This is objective but may miss valid responses that use different terminology or approaches than the ground truth expects. A human evaluation study would add nuance.
+    
+4.  **Skill content parity.** Both approaches contained identical content. In practice, progressive disclosure often leads to *different* content — authors tend to write more detailed, focused content when they know each file has a single purpose. This content quality improvement could shift results in favor of progressive disclosure.
+    
+5.  **Task scope.** Our five tasks are all software engineering. Different domains (legal analysis, medical diagnosis, creative writing) may show different patterns.
+    
 
 Future work should expand to multiple model families, implement true dynamic progressive loading, include human evaluation, and test across diverse domains.
 
----
+* * *
 
 ## The Bottom Line
 
@@ -291,6 +314,6 @@ That said, the nuanced patterns we identified — progressive excels at analytic
 
 **The right answer is not "always monolithic" or "always progressive." The right answer is "it depends on your task, your model, and your team." Now you have the data to decide.**
 
----
+* * *
 
 *This study was conducted using real API calls to GLM-4-Plus, GLM-4-Flash, GLM-4-Air, and GLM-3-Turbo. All 40 benchmark runs were executed against live model endpoints with no simulated or synthetic results. The complete dataset, skill files, and visualization charts are available in the accompanying zip archive.*
