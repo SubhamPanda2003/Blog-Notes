@@ -10,7 +10,7 @@ tags: artificial-intelligence, research, skills, research-report
 
 ---
 
-* ALL THE BELOW RESEARCH IS DONE USING AN AGENT Z.AI AND ITS MODELS *
+*ALL THE BELOW RESEARCH IS DONE USING AN AGENT Z.AI AND ITS MODELS*
 
 *An empirical study comparing two skill design paradigms across 5 tasks and 4 LLMs — with real API calls, real results, and surprising findings about hallucination, accuracy, and when to choose which approach.*
 
