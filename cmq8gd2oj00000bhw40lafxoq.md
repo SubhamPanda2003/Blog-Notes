@@ -320,4 +320,4 @@ That said, the nuanced patterns we identified — progressive excels at analytic
 
 * * *
 
-%[https://subham-panda-newsletter.beehiiv.com/]
+<iframe>https://subham-panda-newsletter.beehiiv.com/&lt;\iframe&gt;</iframe>
