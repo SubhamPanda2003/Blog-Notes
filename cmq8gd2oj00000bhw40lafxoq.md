@@ -316,8 +316,6 @@ That said, the nuanced patterns we identified — progressive excels at analytic
 
 * * *
 
-*This study was conducted using real API calls to GLM-4-Plus, GLM-4-Flash, GLM-4-Air, and GLM-3-Turbo. All 40 benchmark runs were executed against live model endpoints with no simulated or synthetic results.*  
+*This study was conducted using real API calls to GLM-4-Plus, GLM-4-Flash, GLM-4-Air, and GLM-3-Turbo. All 40 benchmark runs were executed against live model endpoints with no simulated or synthetic results.*
 
 * * *
-
-%[https://subham-panda-newsletter.beehiiv.com/]
