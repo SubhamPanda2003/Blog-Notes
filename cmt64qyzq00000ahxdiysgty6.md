@@ -5,9 +5,9 @@ seoDescription: "Spec-Driven Development: When AI Writes Code, It Should Be Able
 datePublished: 2026-08-23T18:17:51.803Z
 cuid: cmt64qyzq00000ahxdiysgty6
 slug: spec-driven-development-when-ai-writes-code-it-should-be-able-to-tell-you-why
+cover: https://cdn.hashnode.com/uploads/covers/6a06127cbaf09db7a628dd57/32d62129-ba04-415f-a596-0846848eb434.png
 
 ---
-
 
 AI coding agents are getting very good at writing software. But there is a problem that becomes more important as they become more autonomous:
 
@@ -15,7 +15,7 @@ AI coding agents are getting very good at writing software. But there is a probl
 
 Tests can tell us whether code works. They don't necessarily tell us whether the agent implemented something that was never requested.
 
-That is the problem I explored in my paper, **“Citation Discipline in Spec-Driven Development.”** ([arXiv][1])
+That is the problem I explored in my paper, **“Citation Discipline in Spec-Driven Development.”** ([arXiv](https://arxiv.org/abs/2606.30689?utm_source=chatgpt.com))
 
 The idea behind **traceSDD** is simple: treat requirements like citations.
 
@@ -68,5 +68,3 @@ But I do think we're going to need better answers to a basic question:
 **“Why did the AI write this line of code?”**
 
 Traceability is one possible answer.
-
-[1]: https://arxiv.org/abs/2606.30689?utm_source=chatgpt.com "Citation Discipline in Spec-Driven Development: A Cross-Model Empirical Study of Output Determinism and Automated Hallucination Detection in LLM-Generated Code"
